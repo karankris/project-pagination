@@ -5,20 +5,25 @@ import ProductCard from "./components/productCard";
 import { FaAngleRight, FaAngleLeft } from "react-icons/fa";
 import { toast } from 'react-toastify';
 import ToastContainerConfig from "./components/loaders/toast";
-import useFetchProducts from "./hooks/useProducts";
 import IconSpinner from "./components/loaders/loader";
-import usePagiantion from "./hooks/usePagination";
+import { Product } from "./utils/types";
 
+import { usePagination ,useApiResource } from 'k-next-pagination';
 const Pagination = () => {
 
+  const API = "https://dummyjson.com/products?limit=500"
   const [currentPage, setCurrentPage] = useState<number>(0);
-  const { products } = useFetchProducts(); // Get products from custom hook
-  const {totalPages, start, end } = usePagiantion(currentPage); // Get pagination calculations from a custom hook
+  const { data, loading } = useApiResource<Product>(
+    API,
+    "products"
+  );
+  const { totalPages, start, end } = usePagination(data, currentPage);
+
 
   const _handleSelectPage = (n: number) => {
     setCurrentPage(n)
   }
-  
+
   const _handleNextPage = () => {
     setCurrentPage((prev) => prev + 1)
     if (currentPage === totalPages - 2) {
@@ -31,7 +36,7 @@ const Pagination = () => {
   }
 
   return (
-    !products.length ?
+    !data.length && loading ?
       (
         <div className="h-full flex justify-center items-center mt-96">
           <IconSpinner />
@@ -49,7 +54,7 @@ const Pagination = () => {
           </div>
           <div className="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 gap-1 px-4">
             {
-              products.slice(start, end).map((p) => (
+              data.slice(start, end).map((p) => (
                 <ProductCard key={p.id} image={p.thumbnail} title={p.title} price={p.price} />
               ))
             }

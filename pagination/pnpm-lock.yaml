@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      k-next-pagination:
+        specifier: ^1.1.3
+        version: 1.1.3(react@19.0.0)
       next:
         specifier: 15.1.6
         version: 15.1.6(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
@@ -1109,6 +1112,11 @@ packages:
   jsx-ast-utils@3.3.5:
     resolution: {integrity: sha512-ZZow9HBI5O6EPgSJLUb8n2NKgmVWTwCvHGwFuJlMjvLFqlGG6pjirPhtdsseaLZjSibD8eegzmYpUZwoIlj2cQ==}
     engines: {node: '>=4.0'}
+
+  k-next-pagination@1.1.3:
+    resolution: {integrity: sha512-XHTGpO9fiNVoRX8AZhuma0EWH9W7lmBnlyI2+U6HLmq4xWBFvHifEZl1+fJ4ju53ytqZV70i57XeT0oStyp+xQ==}
+    peerDependencies:
+      react: ^18 || ^19
 
   keyv@4.5.4:
     resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
@@ -2913,6 +2921,10 @@ snapshots:
       array.prototype.flat: 1.3.3
       object.assign: 4.1.7
       object.values: 1.2.1
+
+  k-next-pagination@1.1.3(react@19.0.0):
+    dependencies:
+      react: 19.0.0
 
   keyv@4.5.4:
     dependencies:
